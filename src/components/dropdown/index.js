@@ -1,6 +1,6 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
-const Dropdown = ({ label, default_option, onSelectChange, options, size }) => {
+const Dropdown = ({ label, value, onSelectChange, options, size }) => {
   return (
     <FormControl size={size ? size : "small"}>
       <InputLabel id={"select-" + label + "-label"}> {label} </InputLabel>
@@ -8,11 +8,11 @@ const Dropdown = ({ label, default_option, onSelectChange, options, size }) => {
         id={"select-" + label}
         labelId={"select-" + label + "-label"}
         label={label}
-        value={default_option}
+        value={JSON.stringify(value)}
         onChange={onSelectChange}
       >
-        {options.map((opt) => (
-          <MenuItem key={opt.id} value={opt}>
+        {options.map((opt, idx) => (
+          <MenuItem key={idx} value={JSON.stringify(opt)}>
             {opt.label}
           </MenuItem>
         ))}

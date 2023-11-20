@@ -2,7 +2,7 @@ import Editor from "@monaco-editor/react";
 
 const CodeEditorTextBox = ({ onChange, language, code, theme }) => {
   const handleEditorChange = (value) => {
-    onChange("code", value);
+    onChange(value);
   };
 
   return (
