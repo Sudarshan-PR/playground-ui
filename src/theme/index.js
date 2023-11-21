@@ -36,6 +36,30 @@ const getDesignTokens = (mode) => ({
             default: "#2C3333",
             paper: "#2E4F4F",
           },
+          error: {
+            main: "#CC4021",
+            light: "#CE664E",
+            dark: "#AE2F12",
+            contrastText: "#FFFFFF",
+          },
+          warning: {
+            main: "#F3C141",
+            light: "#dbb963",
+            dark: "#b88a15",
+            contrastText: "#111111",
+          },
+          success: {
+            main: "#2EA031",
+            light: "#66b669",
+            dark: "#27742a",
+            contrastText: "#000000",
+          },
+          info: {
+            main: "#49bdbb",
+            light: "#75cecc",
+            dark: "#258784",
+            contrastText: "#1D1A1A",
+          },
           text: {
             primary: "#EBEBEE",
             secondary: "#C1C1C1",
