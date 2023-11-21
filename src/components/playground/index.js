@@ -4,6 +4,7 @@ import {
   Stack,
   CircularProgress,
   Typography,
+  Snackbar,
 } from "@mui/material";
 import { CodeEditor } from "../codeEditor";
 import { Output } from "../output";
@@ -16,7 +17,8 @@ const Playground = () => {
   const [code, setCode] = useState("// some comment");
   const [compiling, setCompiling] = useState(false);
   const [output, setOutput] = useState("Compile to get output");
-  const [outputType, setOutputType] = useState("success");
+  // const [outputType, setOutputType] = useState("success");
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const userid = getUserID();
 
@@ -37,8 +39,14 @@ const Playground = () => {
     if (val !== null) {
       setCompiling(false);
       setOutput(val.output);
-      setOutputType(val.type);
+      if (val.type !== "success") {
+        setOpenSnackbar(true);
+      }
     }
+  };
+
+  const handleSnackbarClose = () => {
+    setOpenSnackbar(false);
   };
 
   const onCodeChange = (val) => {
@@ -78,7 +86,7 @@ const Playground = () => {
         <Grid item xs={4}>
           <Stack height="100%" spacing={2}>
             <Button
-              color={compiling ? "secondary" : "primary"}
+              color={compiling ? "info" : "primary"}
               id="compile-button"
               variant="contained"
               onClick={onCompile}
@@ -90,10 +98,15 @@ const Playground = () => {
                 <Typography fontSize="1rem">Compile</Typography>
               )}
             </Button>
-            <Output text={output} type={outputType} />
+            <Output text={output} />
           </Stack>
         </Grid>
       </Grid>
+      <Snackbar
+        open={openSnackbar}
+        message="Error occured while execution."
+        onClose={handleSnackbarClose}
+      />
     </>
   );
 };
