@@ -1,13 +1,6 @@
 import { useState } from "react";
 
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
-
 import monacoThemes from "monaco-themes/themes/themelist";
-
-// import useKeyPress from "../hooks/useKeyPress";
-// import Footer from "./Footer";
-// import LanguagesDropdown from "./LanguagesDropdown";
 
 import { CodeEditorTextBox } from "../codeEditorTextBox";
 import { languageOptions } from "./languages";
