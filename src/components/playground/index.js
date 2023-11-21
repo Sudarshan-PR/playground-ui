@@ -1,12 +1,45 @@
-import { Button, Grid, Stack } from "@mui/material";
+import {
+  Button,
+  Grid,
+  Stack,
+  CircularProgress,
+  Typography,
+} from "@mui/material";
 import { CodeEditor } from "../codeEditor";
 import { Output } from "../output";
-import { useState } from "react";
-import { compileCode } from "../../utils";
+import { useEffect, useState } from "react";
+import { compileCode, getUserID, base_url_ws } from "../../utils";
+import useWebSocket from "react-use-websocket";
 
 const Playground = () => {
   const [language, setLanguage] = useState("go");
   const [code, setCode] = useState("// some comment");
+  const [compiling, setCompiling] = useState(false);
+  const [output, setOutput] = useState("Compile to get output");
+  const [outputType, setOutputType] = useState("success");
+
+  const userid = getUserID();
+
+  const WS_URL = `${base_url_ws}/ws?user=${userid}`;
+  const { lastJsonMessage } = useWebSocket(WS_URL, {
+    share: false,
+    shouldReconnect: () => true,
+    retryOnError: true,
+  });
+
+  // Run when a new WebSocket message is received (lastJsonMessage)
+  useEffect(() => {
+    onNotification(lastJsonMessage);
+  }, [lastJsonMessage]);
+
+  const onNotification = (val) => {
+    console.log("Output Received: ", val);
+    if (val !== null) {
+      setCompiling(false);
+      setOutput(val.output);
+      setOutputType(val.type);
+    }
+  };
 
   const onCodeChange = (val) => {
     setCode(val);
@@ -18,16 +51,18 @@ const Playground = () => {
 
   const onQueued = (data) => {
     console.log(data);
+    setCompiling(true);
   };
   const onQueuedError = (data) => {
     console.log(data);
   };
 
   const onCompile = () => {
-    const data = { code, language };
+    const data = { code, language, userid };
 
     compileCode(data, onQueued, onQueuedError);
   };
+
   return (
     <>
       <Grid container spacing={2}>
@@ -37,15 +72,25 @@ const Playground = () => {
             onCodeChange={onCodeChange}
             onLanguageChange={onLanguageChange}
             language={language}
-            theme="spacecadet"
+            theme="pastels-on-dark"
           />
         </Grid>
         <Grid item xs={4}>
           <Stack height="100%" spacing={2}>
-            <Button id="compile-button" variant="contained" onClick={onCompile}>
-              Compile
+            <Button
+              color={compiling ? "secondary" : "primary"}
+              id="compile-button"
+              variant="contained"
+              onClick={onCompile}
+              sx={{ maxHeight: 50, height: 50 }}
+            >
+              {compiling ? (
+                <CircularProgress color="inherit" size="1.5rem" />
+              ) : (
+                <Typography fontSize="1rem">Compile</Typography>
+              )}
             </Button>
-            <Output />
+            <Output text={output} type={outputType} />
           </Stack>
         </Grid>
       </Grid>

@@ -33,7 +33,7 @@ const CodeEditor = ({
 }) => {
   const [codeDefault, setCodeDefault] = useState(code || javascriptDefault);
   const [themeDefault, setTheme] = useState(
-    monacoThemesList.find((th) => th.themeid === (theme || "clouds-midnight"))
+    monacoThemesList.find((th) => th.themeid === (theme || "pastels-on-dark"))
   );
   const [languageDefault, setLanguage] = useState(
     languageOptions.find((lang) => lang.value === (language || "javascript"))
@@ -49,7 +49,7 @@ const CodeEditor = ({
   };
 
   const onThemeChangeDefault = (event) => {
-    const th = JSON.parse(event.target).value;
+    const th = JSON.parse(event.target.value);
     if (["light", "vs-dark"].includes(th.value)) {
       setTheme(th);
     } else {
