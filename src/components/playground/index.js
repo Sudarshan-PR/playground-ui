@@ -22,11 +22,15 @@ const Playground = () => {
 
   const userid = getUserID();
 
-  const WS_URL = `${base_url_ws}/ws?user=${userid}`;
+  const WS_URL = `${base_url_ws}/ws`;
+  const queryParams = {
+    user: userid,
+  };
   const { lastJsonMessage } = useWebSocket(WS_URL, {
     share: false,
     shouldReconnect: () => true,
     retryOnError: true,
+    queryParams,
   });
 
   // Run when a new WebSocket message is received (lastJsonMessage)

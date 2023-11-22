@@ -3,8 +3,8 @@ import axios from "axios";
 // const base_url = "http://api.playground.com";
 // const base_url_ws = "ws://ws.playground.com";
 
-const base_url = "https://moral-factually-hermit.ngrok-free.app";
-const base_url_ws = "wss://moral-factually-hermit.ngrok-free.app";
+const base_url = "https://api.sudarshan.cloud";
+const base_url_ws = "wss://ws.sudarshan.cloud";
 
 const compileCode = (data, callback, callbackError) => {
   axios
