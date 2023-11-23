@@ -33,6 +33,7 @@ const Playground = () => {
     share: false,
     shouldReconnect: () => true,
     retryOnError: true,
+    heartbeat: true,
     queryParams,
   });
 
@@ -43,7 +44,7 @@ const Playground = () => {
 
   const onNotification = (val) => {
     console.log("Output Received: ", val);
-    if (val !== null) {
+    if (val !== null && Object.keys(val).length > 0) {
       setCompiling(false);
       setOutput(val.output);
       if (val.type !== "success") {
