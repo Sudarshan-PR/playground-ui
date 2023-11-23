@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/playground-ui/static/css/main.151f7969.css",
-    "main.js": "/playground-ui/static/js/main.3629b17b.js",
+    "main.js": "/playground-ui/static/js/main.cb0cb1f7.js",
     "static/js/266.889c37ed.chunk.js": "/playground-ui/static/js/266.889c37ed.chunk.js",
     "static/js/4450.90e8bb54.chunk.js": "/playground-ui/static/js/4450.90e8bb54.chunk.js",
     "static/js/8849.84f51017.chunk.js": "/playground-ui/static/js/8849.84f51017.chunk.js",
@@ -59,11 +59,11 @@
     "static/js/787.d4864de8.chunk.js": "/playground-ui/static/js/787.d4864de8.chunk.js",
     "index.html": "/playground-ui/index.html",
     "main.151f7969.css.map": "/playground-ui/static/css/main.151f7969.css.map",
-    "main.3629b17b.js.map": "/playground-ui/static/js/main.3629b17b.js.map",
+    "main.cb0cb1f7.js.map": "/playground-ui/static/js/main.cb0cb1f7.js.map",
     "787.d4864de8.chunk.js.map": "/playground-ui/static/js/787.d4864de8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.151f7969.css",
-    "static/js/main.3629b17b.js"
+    "static/js/main.cb0cb1f7.js"
   ]
 }
