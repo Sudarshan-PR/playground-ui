@@ -7,6 +7,7 @@ import {
   Snackbar,
 } from "@mui/material";
 import { CodeEditor } from "../codeEditor";
+import { languageOptions } from "../codeEditor/languages";
 import { Output } from "../output";
 import { useEffect, useState } from "react";
 import { compileCode, getUserID, base_url_ws } from "../../utils";
@@ -14,7 +15,9 @@ import useWebSocket from "react-use-websocket";
 
 const Playground = () => {
   const [language, setLanguage] = useState("go");
-  const [code, setCode] = useState("// some comment");
+  const [code, setCode] = useState(
+    languageOptions.find((lang) => lang.value === language).placeholder
+  );
   const [compiling, setCompiling] = useState(false);
   const [output, setOutput] = useState("Compile to get output");
   // const [outputType, setOutputType] = useState("success");
