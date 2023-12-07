@@ -1,10 +1,10 @@
 /* eslint-disable no-multi-str */
 export const languageOptions = [
   {
-    name: "JavaScript (Node.js 12.14.0)",
-    label: "JavaScript (Node.js 12.14.0)",
-    value: "javascript",
-    placeholder: 'console.log("Welcome to playground.");',
+    name: "Python (3.9.0)",
+    label: "Python (3.9.0)",
+    value: "python",
+    placeholder: 'print("Hello World")',
   },
   {
     name: "Go (1.13.5)",
